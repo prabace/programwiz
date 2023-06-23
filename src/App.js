@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import JobCards from "./Components/JobCards";
 import Landing from "./Pages/Landing";
+import Filter from "./Components/Filter";
 function App() {
   return (
     <div className="App">
@@ -11,7 +12,8 @@ function App() {
           <Route path="/cards" element={<JobCards />} />
 
           <Route path="/job" element={<Landing />} />
-        </Routes>
+
+          <Route path="/filter" element={<Filter />} />        </Routes>
       </BrowserRouter>
     </div>
   );

@@ -8,13 +8,13 @@ const JobCards = (props) => {
         
             <div className='grid grid-cols-2 items-center'>
                 <div className='flex flex-row gap-x-10 py-4'>
-                   <img className='object-fit w-[100px] rounded-full h-[100px]' src={props.logo}/>
+                   <img className='object-cover w-[100px] rounded-full h-[100px]' src={props.logo}/>
 
                     <div className='flex flex-col gap-y-2 '>
                     <div className='flex flex-row gap-x-4'>
                          <div className='text-[#B3B5B4] font-semibold'>{props.company}</div>
-                         <div className='bg-[#5EA4A3] font-semibold text-white px-3 rounded-2xl'>new!</div>
-                         <div className='bg-[#313938] font-semibold text-white px-3 rounded-2xl'>featured</div>
+                         {/* <div className='bg-[#5EA4A3] font-semibold text-white px-3 rounded-2xl'>new!</div>
+                         <div className='bg-[#313938] font-semibold text-white px-3 rounded-2xl'>featured</div> */}
                     </div>
                     
                     <div className='text-lg text-[#313938] font-bold'> 
@@ -22,7 +22,7 @@ const JobCards = (props) => {
                     </div>
                     
                     <div className=' text-[#B3B5B4] flex flex-row gap-x-4'>
-                         <div>{props.date}</div>
+                         <div>{props.date} days ago</div>
                          <div>.</div>
                          <div>{props.timing}</div>
                          <div>.</div>
