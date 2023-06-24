@@ -8,7 +8,7 @@ const JobCards = (props) => {
         
             <div className='grid grid-cols-2 items-center'>
                 <div className='flex flex-row gap-x-10 py-4'>
-                   <img className='object-cover w-[100px] rounded-full h-[100px]' src={props.logo}/>
+                   <img alt="logo" className='object-cover w-[100px] rounded-full h-[100px]' src={props.logo}/>
 
                     <div className='flex flex-col gap-y-2 '>
                     <div className='flex flex-row gap-x-4'>

@@ -5,6 +5,9 @@ import Filter from "../Components/Filter";
 import { useSelector } from "react-redux";
 const Landing = () => {
   const [jobs, setJobs] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState();
+
+
      const currentDate = new Date().getTime()
 
   const filter = useSelector(
@@ -19,13 +22,22 @@ const Landing = () => {
 
         const response = await data.json();
         console.log(data);
-
         setJobs(response);
       };
+
       fetchData();
     }, []);
 
     
+  function handleSelect(data) {
+    setSelectedOptions(data);
+  }
+  
+  console.log(selectedOptions)
+
+    const allKeywords = jobs.flatMap(job => job.keywords);
+    
+    console.log(allKeywords)
 
     let displayJobs = Object.keys(jobs)
      .filter((job) => (filter ? jobs[job].keywords.toString().toLowerCase().includes(filter.toLowerCase()) : true))
@@ -50,7 +62,7 @@ const Landing = () => {
           <img alt="wallpaper" className="object-cover w-screen h-[200px]" src={green} />
         </div>
         <div className="">
-            <Filter/>
+            <Filter allKeywords = {allKeywords} handleSelect={handleSelect} selectedOptions={selectedOptions}/>
         </div>
         <div className="mt-40">
             {displayJobs}

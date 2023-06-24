@@ -1,24 +1,40 @@
-import React,{useState} from 'react'
+import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setFilter } from '../Redux/Slices/filterSlice';
-
-const Filter = () => {
-
-
-    const [activeFilters, setActiveFilters] = useState([]);
+import { setFilter } from "../Redux/Slices/filterSlice";
+import Select from "react-select";
 
 
-        const filter = useSelector(
-          (state) => state.jobFilter.filter
-          )
+const Filter = (props) => {
 
-          const dispatch = useDispatch()
-          
+
+
+  // const filter = useSelector(
+  //   (state) => state.jobFilter.filter
+  //   )
+
+  //   const dispatch = useDispatch()
+
+  const options = props.allKeywords.map((keyword) => ({
+    value: keyword,
+    label: keyword,
+  }));
+
 
   return (
     <div>
-        <div className="rounded-lg -mt-6  flex flex-row items-center justify-center">
-          <input
+      <div className="rounded-lg -mt-4 flex flex-row items-center justify-center">
+        <Select
+          closeMenuOnSelect={false}
+          defaultValue={[options[0], options[1]]}
+          isMulti
+          options={options}
+          onChange={props.handleSelect}
+          value={props.selectedOptions}
+          
+        />
+
+        {/* <input
+            alt='search'
             class="bg-gray-200 rounded-lg px-40 py-6 absolute"
             onChange={(e) => dispatch(setFilter(e.target.value))}
             type="text"
@@ -43,10 +59,10 @@ const Filter = () => {
                 />
               </svg>
             </span>
-          </div>
-        </div>
+          </div> */}
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default Filter;

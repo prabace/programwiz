@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route path="/cards" element={<JobCards />} />
 
-          <Route path="/job" element={<Landing />} />
+          <Route path="/" element={<Landing />} />
 
           <Route path="/filter" element={<Filter />} />        </Routes>
       </BrowserRouter>
