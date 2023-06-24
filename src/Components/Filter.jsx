@@ -1,6 +1,4 @@
-import React, {useState} from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setFilter } from "../Redux/Slices/filterSlice";
+import React from "react";
 import Select from "react-select";
 
 
@@ -14,7 +12,7 @@ const Filter = (props) => {
 
   //   const dispatch = useDispatch()
 
-  const options = props.allKeywords.map((keyword) => ({
+  const options = props.allKeywords?.map((keyword) => ({
     value: keyword,
     label: keyword,
   }));
@@ -23,16 +21,18 @@ const Filter = (props) => {
   return (
     <div>
       <div className="rounded-lg -mt-4 flex flex-row items-center justify-center">
+        <div className="w-[300px]">
         <Select
           closeMenuOnSelect={false}
-          defaultValue={[options[0], options[1]]}
+          defaultValue={options && [options[0], options[1]]}
           isMulti
           options={options}
           onChange={props.handleSelect}
           value={props.selectedOptions}
+
           
         />
-
+</div>
         {/* <input
             alt='search'
             class="bg-gray-200 rounded-lg px-40 py-6 absolute"

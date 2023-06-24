@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import JobCards from "../Components/JobCards";
 import green from "../Assets/green.jpg";
 import Filter from "../Components/Filter";
-import { useSelector } from "react-redux";
 const Landing = () => {
   const [jobs, setJobs] = useState([]);
-  const [selectedOptions, setSelectedOptions] = useState();
+
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
 
      const currentDate = new Date().getTime()
 
-  const filter = useSelector(
-    (state) => state.jobFilter.filter
-    )
+  // const filter = useSelector(
+  //   (state) => state.jobFilter.filter
+  //   )
 
     useEffect(() => {
       const fetchData = async () => {
@@ -30,17 +30,18 @@ const Landing = () => {
 
     
   function handleSelect(data) {
-    setSelectedOptions(data);
+   setSelectedOptions(data);
   }
   
-  console.log(selectedOptions)
 
-    const allKeywords = jobs.flatMap(job => job.keywords);
-    
-    console.log(allKeywords)
 
     let displayJobs = Object.keys(jobs)
-     .filter((job) => (filter ? jobs[job].keywords.toString().toLowerCase().includes(filter.toLowerCase()) : true))
+     .filter((job) => selectedOptions.length === 0 ||
+     selectedOptions.some((item) => {
+       return jobs[job].keywords.some((keyword) =>
+         item.value.includes(keyword)
+       );
+     }))
       .map((job) => {
         return (
           <JobCards
@@ -55,6 +56,8 @@ const Landing = () => {
           />
         );
       });
+
+      const allKeywords = jobs.flatMap(job => job.keywords);
 
     return (
       <div>
