@@ -57,7 +57,7 @@ const Landing = () => {
         );
       });
 
-      const allKeywords = jobs.flatMap(job => job.keywords);
+      const allKeywords = [...new Set(jobs.flatMap(job => job.keywords))];
 
     return (
       <div>
